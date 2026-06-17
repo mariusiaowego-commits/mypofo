@@ -252,6 +252,23 @@
     font-family: var(--mono);
   }
 
+  /* 长条形截图 (菜单栏 HUD 等) 桌面端居中缩放, 移动端仍全宽 */
+  .card-shot--narrow {
+    text-align: center;
+  }
+  .card-shot--narrow a {
+    display: inline-block;
+    max-width: 100%;
+  }
+  .card-shot--narrow img {
+    max-width: min(720px, 100%);
+    margin: 0 auto;
+  }
+  .card-shot--narrow figcaption,
+  .card-shot--narrow .zoom-hint {
+    text-align: center;
+  }
+
   /* Lightbox */
   .lightbox {
     position: fixed;
@@ -527,7 +544,7 @@
       <div class="etymology">credit<span class="arrow">·</span>余额 + bar<span class="arrow">·</span>状态栏</div>
       <p class="desc">macOS 菜单栏里看 5 个 provider 余额:DeepSeek、OpenRouter、MiniMax、Moonshot、Nous Portal。点开一屏全有,不用挨个登录。API key 进 Keychain,Settings 不回显,日志全 redact。4 套主题可切,Nothing White 我最常用。每日活跃自动落进 UserDefaults,365 天热力图积累中。</p>
       <div class="meta">swift · menubar · keychain</div>
-      <figure class="card-shot">
+      <figure class="card-shot card-shot--narrow">
         <a href="screenshots/creditsbar.png" data-lightbox="creditsbar">
           <img src="screenshots/creditsbar.png" alt="creditsbar 菜单栏 HUD" loading="lazy">
         </a>
