@@ -196,6 +196,42 @@
     overflow-wrap: break-word;
   }
 
+  /* Project screenshot */
+  .card-shot {
+    margin-top: clamp(8px, 1.5vw, 12px);
+    border-top: 0.5pt solid var(--border-soft);
+    padding-top: clamp(8px, 1.5vw, 12px);
+  }
+  .card-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: clamp(4px, 0.8vw, 6px);
+    border: 0.5pt solid var(--border);
+    background: var(--bg-warm);
+    /* 缺图时优雅降级: 浅灰底 + 小图标 */
+    min-height: 60px;
+  }
+  .card-shot img[src$="dizical.png"],
+  .card-shot img[src$="mofang.png"],
+  .card-shot img[src$="chronocare.png"],
+  .card-shot img[src$="literary-maps.png"],
+  .card-shot img[src$="mole-vibe.png"],
+  .card-shot img[src$="moni.png"],
+  .card-shot img[src$="sonquiz.png"],
+  .card-shot img[src$="uiux-asset-library.png"],
+  .card-shot img[src$="creditsbar.png"] {
+    /* 占位图默认显示(等用户放真实截图) */
+  }
+  .card-shot figcaption {
+    font-size: clamp(11px, 1.8vw, 13px);
+    color: var(--stone);
+    text-align: center;
+    margin-top: clamp(4px, 0.8vw, 6px);
+    font-style: italic;
+    font-family: var(--serif);
+  }
+
   /* Footer */
   .footer {
     margin-top: clamp(24px, 4vw, 40px);
@@ -245,7 +281,7 @@
     </div>
   </div>
 
-  <div class="section-title">一 · 名字有典故</div>
+  <div class="section-title">一 · 家里用的</div>
   <div class="stack">
 
     <div class="card">
@@ -257,45 +293,61 @@
       <div class="etymology">dizi<span class="arrow">·</span>笛 + cal<span class="arrow">·</span>计算 + Descartes<span class="arrow">·</span>笛卡尔</div>
       <p class="desc">笛卡尔说「我思故我在」,dizical 说「我练故笛在」——记录下每次练习的时间,月底自动出图。女儿的竹笛课管家,缴费、练功打卡、月报都在这里。</p>
       <div class="meta">obsidian · 微信 bot · fal 生图</div>
+      <figure class="card-shot">
+        <img src="screenshots/dizical.png" alt="dizical iPad 练习界面">
+        <figcaption>iPad 端 kid-app 练习页</figcaption>
+      </figure>
     </div>
 
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 02</span>
-        <span class="tag tag-stable">稳态</span>
-      </div>
-      <h2>sonquiz</h2>
-      <div class="etymology">son(g)<span class="arrow">·</span>宋 + quiz<span class="arrow">·</span>考卷</div>
-      <p class="desc">song 收尾的 g 和 quiz 起头的 q 是镜像。压缩进 sonquiz 之后,中间那个 q 同时身兼两职:既替 song 漏掉的 g,又当 quiz 的开头。一个字母,两种身份。出卷对话工具,丢一份教材 PDF,用日常话讲要出什么,自动还原成 Word 原版式。</p>
-      <div class="meta">docx · pdf · ocr 管线</div>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <span class="card-num">№ 03</span>
         <span class="tag tag-wip">迭代中</span>
       </div>
       <h2>mofang</h2>
       <div class="etymology">魔方<span class="arrow">·</span>字面</div>
       <p class="desc">给女儿做的魔方学练工具,CFOP 教程、多用户、AO5/AO12 统计都有。我俩各跑各的成绩曲线,谁进步快一目了然。</p>
       <div class="meta">python cli · curses tui</div>
+      <figure class="card-shot">
+        <img src="screenshots/mofang.png" alt="mofang TUI 界面">
+        <figcaption>终端 TUI 成绩曲线</figcaption>
+      </figure>
     </div>
 
     <div class="card">
       <div class="card-head">
-        <span class="card-num">№ 04</span>
-        <span class="tag tag-stable">稳态</span>
+        <span class="card-num">№ 03</span>
+        <span class="tag tag-live">在用</span>
       </div>
-      <h2>moni</h2>
-      <div class="etymology">monitor<span class="arrow">·</span>监控</div>
-      <p class="desc">同业信源自动抓取,落到本地新闻库。给一组关键词,定时拉内容、出研究简报。交行竞品监控一直在跑,周报自动出。</p>
-      <div class="meta">python · apscheduler · yaml</div>
+      <h2>chronocare</h2>
+      <div class="etymology">chrono<span class="arrow">·</span>时间 + care<span class="arrow">·</span>照护</div>
+      <p class="desc">给父母专门定制的健康管理系统。OCR 扫描病历/化验单/处方,落进结构化数据库;LLM 把数据库里那些指标翻成他们能看懂的话;Dashboard 长期盯着趋势看。</p>
+      <div class="meta">fastapi · ocr · llm · echarts</div>
+      <figure class="card-shot">
+        <img src="screenshots/chronocare.png" alt="chronocare dashboard">
+        <figcaption>Dashboard 长期趋势</figcaption>
+      </figure>
     </div>
 
   </div>
 
-  <div class="section-title">二 · 工具与家</div>
+  <div class="section-title">二 · 自己的</div>
   <div class="stack">
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 04</span>
+        <span class="tag tag-live">在用</span>
+      </div>
+      <h2>literary-maps</h2>
+      <div class="etymology">文学<span class="arrow">·</span>地图</div>
+      <p class="desc">读《边城》就去湘西,读《百年孤独》就把马孔多标到南美。深度旅行前的研究工具,把文学里的真实地点落进地图。</p>
+      <div class="meta">geo · 文本 · obsidian</div>
+      <figure class="card-shot">
+        <img src="screenshots/literary-maps.png" alt="literary-maps 地图">
+        <figcaption>《边城》湘西 + 《百年孤独》马孔多</figcaption>
+      </figure>
+    </div>
 
     <div class="card">
       <div class="card-head">
@@ -306,45 +358,61 @@
       <div class="etymology">mole<span class="arrow">·</span>摸了·摸鱼 + vibe<span class="arrow">·</span>氛围</div>
       <p class="desc">工位上低调看一眼股票。A股/港股/美股全市场,接富途 OpenD。在终端里按两下键就查到,窗口一关就消失,看着不张扬。</p>
       <div class="meta">futu opend · curses tui</div>
+      <figure class="card-shot">
+        <img src="screenshots/mole-vibe.png" alt="mole-vibe TUI 行情">
+        <figcaption>终端 TUI 行情</figcaption>
+      </figure>
     </div>
+
+  </div>
+
+  <div class="section-title">三 · 干活用的</div>
+  <div class="stack">
 
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 06</span>
         <span class="tag tag-stable">稳态</span>
       </div>
-      <h2>uiux-asset-library</h2>
-      <div class="etymology">UI<span class="arrow">·</span>UX<span class="arrow">·</span>资产库</div>
-      <p class="desc">自己所有项目的 UI/UX 组件都收在这里,自己用过的东西,不是截图。写新页面随用随查,已经攒了 54 个真实系统的设计令牌。</p>
-      <div class="meta">design tokens · 54 系统</div>
+      <h2>moni</h2>
+      <div class="etymology">monitor<span class="arrow">·</span>监控</div>
+      <p class="desc">同业信源自动抓取,落到本地新闻库。给一组关键词,定时拉内容、出研究简报。交行竞品监控一直在跑,周报自动出。</p>
+      <div class="meta">python · apscheduler · yaml</div>
+      <figure class="card-shot">
+        <img src="screenshots/moni.png" alt="moni 监控报告">
+        <figcaption>研究简报 / 周报输出</figcaption>
+      </figure>
     </div>
 
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 07</span>
-        <span class="tag tag-live">在用</span>
+        <span class="tag tag-stable">稳态</span>
       </div>
-      <h2>literary-maps</h2>
-      <div class="etymology">文学<span class="arrow">·</span>地图</div>
-      <p class="desc">读《边城》就去湘西,读《百年孤独》就把马孔多标到南美。深度旅行前的研究工具,把文学里的真实地点落进地图。</p>
-      <div class="meta">geo · 文本 · obsidian</div>
+      <h2>sonquiz</h2>
+      <div class="etymology">son(g)<span class="arrow">·</span>宋 + quiz<span class="arrow">·</span>考卷</div>
+      <p class="desc">名字里塞了个文字游戏:宋的尾字母 g 和 quiz 的首字母 q 长得一模一样,压进 sonquiz 之后,中间那个 q 既是漏掉的 g,又是 quiz 的开头。出一个对话工具:丢一份教材 PDF,用日常话讲要出什么,自动还原成 Word 原版式。</p>
+      <div class="meta">docx · pdf · ocr 管线</div>
+      <figure class="card-shot">
+        <img src="screenshots/sonquiz.png" alt="sonquiz 还原的 Word 样张">
+        <figcaption>还原后的 Word 原版式</figcaption>
+      </figure>
     </div>
 
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 08</span>
-        <span class="tag tag-live">在用</span>
+        <span class="tag tag-stable">稳态</span>
       </div>
-      <h2>chronocare</h2>
-      <div class="etymology">chrono<span class="arrow">·</span>时间 + care<span class="arrow">·</span>照护</div>
-      <p class="desc">给父母专门定制的健康管理系统。OCR 扫描病历/化验单/处方,落进结构化数据库;LLM 把数据库里那些指标翻成他们能看懂的话;Dashboard 长期盯着趋势看。</p>
-      <div class="meta">fastapi · ocr · llm · echarts</div>
+      <h2>uiux-asset-library</h2>
+      <div class="etymology">UI<span class="arrow">·</span>UX<span class="arrow">·</span>资产库</div>
+      <p class="desc">自己所有项目的 UI/UX 组件都收在这里,自己用过的东西,不是截图。写新页面随用随查,已经攒了 54 个真实系统的设计令牌。</p>
+      <div class="meta">design tokens · 54 系统</div>
+      <figure class="card-shot">
+        <img src="screenshots/uiux-asset-library.png" alt="uiux-asset-library 设计系统">
+        <figcaption>design tokens 索引页</figcaption>
+      </figure>
     </div>
-
-  </div>
-
-  <div class="section-title">三 · 自我工具</div>
-  <div class="stack">
 
     <div class="card">
       <div class="card-head">
@@ -355,6 +423,10 @@
       <div class="etymology">credit<span class="arrow">·</span>余额 + bar<span class="arrow">·</span>状态栏</div>
       <p class="desc">macOS 菜单栏里看 5 个 provider 余额:DeepSeek、OpenRouter、MiniMax、Moonshot、Nous Portal。点开一屏全有,不用挨个登录。API key 进 Keychain,Settings 不回显,日志全 redact。4 套主题可切,Nothing White 我最常用。每日活跃自动落进 UserDefaults,365 天热力图积累中。</p>
       <div class="meta">swift · menubar · keychain</div>
+      <figure class="card-shot">
+        <img src="screenshots/creditsbar.png" alt="creditsbar 菜单栏 HUD">
+        <figcaption>Nothing White 主题 HUD</figcaption>
+      </figure>
     </div>
 
   </div>
