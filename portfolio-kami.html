@@ -202,6 +202,11 @@
     border-top: 0.5pt solid var(--border-soft);
     padding-top: clamp(8px, 1.5vw, 12px);
   }
+  .card-shot a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
   .card-shot img {
     display: block;
     width: 100%;
@@ -211,6 +216,12 @@
     background: var(--bg-warm);
     /* 缺图时优雅降级: 浅灰底 + 小图标 */
     min-height: 60px;
+    cursor: zoom-in;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+  .card-shot a:hover img {
+    transform: scale(1.01);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
   .card-shot img[src$="dizical.png"],
   .card-shot img[src$="mofang.png"],
@@ -230,6 +241,75 @@
     margin-top: clamp(4px, 0.8vw, 6px);
     font-style: italic;
     font-family: var(--serif);
+  }
+  .card-shot .zoom-hint {
+    display: block;
+    font-size: clamp(10px, 1.6vw, 11px);
+    color: var(--stone);
+    text-align: right;
+    margin-top: 2px;
+    font-style: normal;
+    font-family: var(--mono);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 20, 19, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+  .lightbox.open {
+    display: flex;
+  }
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--ivory);
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+  .lightbox-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--ivory);
+    font-size: 13px;
+    font-family: var(--serif);
+    font-style: italic;
+    opacity: 0.85;
   }
 
   /* Footer */
@@ -294,8 +374,11 @@
       <p class="desc">笛卡尔说「我思故我在」,dizical 说「我练故笛在」——记录下每次练习的时间,月底自动出图。女儿的竹笛课管家,缴费、练功打卡、月报都在这里。</p>
       <div class="meta">obsidian · 微信 bot · fal 生图</div>
       <figure class="card-shot">
-        <img src="screenshots/dizical.png" alt="dizical iPad 练习界面">
+        <a href="screenshots/dizical.png" data-lightbox="dizical">
+          <img src="screenshots/dizical.png" alt="dizical iPad 练习界面" loading="lazy">
+        </a>
         <figcaption>iPad 端 kid-app 练习页</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -309,8 +392,11 @@
       <p class="desc">给女儿做的魔方学练工具,CFOP 教程、多用户、AO5/AO12 统计都有。我俩各跑各的成绩曲线,谁进步快一目了然。</p>
       <div class="meta">python cli · curses tui</div>
       <figure class="card-shot">
-        <img src="screenshots/mofang.png" alt="mofang TUI 界面">
+        <a href="screenshots/mofang.png" data-lightbox="mofang">
+          <img src="screenshots/mofang.png" alt="mofang TUI 界面" loading="lazy">
+        </a>
         <figcaption>终端 TUI 成绩曲线</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -324,8 +410,11 @@
       <p class="desc">给父母专门定制的健康管理系统。OCR 扫描病历/化验单/处方,落进结构化数据库;LLM 把数据库里那些指标翻成他们能看懂的话;Dashboard 长期盯着趋势看。</p>
       <div class="meta">fastapi · ocr · llm · echarts</div>
       <figure class="card-shot">
-        <img src="screenshots/chronocare.png" alt="chronocare dashboard">
+        <a href="screenshots/chronocare.png" data-lightbox="chronocare">
+          <img src="screenshots/chronocare.png" alt="chronocare dashboard" loading="lazy">
+        </a>
         <figcaption>Dashboard 长期趋势</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -344,8 +433,11 @@
       <p class="desc">读《边城》就去湘西,读《百年孤独》就把马孔多标到南美。深度旅行前的研究工具,把文学里的真实地点落进地图。</p>
       <div class="meta">geo · 文本 · obsidian</div>
       <figure class="card-shot">
-        <img src="screenshots/literary-maps.png" alt="literary-maps 地图">
+        <a href="screenshots/literary-maps.png" data-lightbox="literary-maps">
+          <img src="screenshots/literary-maps.png" alt="literary-maps 地图" loading="lazy">
+        </a>
         <figcaption>《边城》湘西 + 《百年孤独》马孔多</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -359,8 +451,11 @@
       <p class="desc">工位上低调看一眼股票。A股/港股/美股全市场,接富途 OpenD。在终端里按两下键就查到,窗口一关就消失,看着不张扬。</p>
       <div class="meta">futu opend · curses tui</div>
       <figure class="card-shot">
-        <img src="screenshots/mole-vibe.png" alt="mole-vibe TUI 行情">
+        <a href="screenshots/mole-vibe.png" data-lightbox="mole-vibe">
+          <img src="screenshots/mole-vibe.png" alt="mole-vibe TUI 行情" loading="lazy">
+        </a>
         <figcaption>终端 TUI 行情</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -379,8 +474,11 @@
       <p class="desc">同业信源自动抓取,落到本地新闻库。给一组关键词,定时拉内容、出研究简报。交行竞品监控一直在跑,周报自动出。</p>
       <div class="meta">python · apscheduler · yaml</div>
       <figure class="card-shot">
-        <img src="screenshots/moni.png" alt="moni 监控报告">
+        <a href="screenshots/moni.png" data-lightbox="moni">
+          <img src="screenshots/moni.png" alt="moni 监控报告" loading="lazy">
+        </a>
         <figcaption>研究简报 / 周报输出</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -394,8 +492,11 @@
       <p class="desc">名字里塞了个文字游戏:宋的尾字母 g 和 quiz 的首字母 q 长得一模一样,压进 sonquiz 之后,中间那个 q 既是漏掉的 g,又是 quiz 的开头。出一个对话工具:丢一份教材 PDF,用日常话讲要出什么,自动还原成 Word 原版式。</p>
       <div class="meta">docx · pdf · ocr 管线</div>
       <figure class="card-shot">
-        <img src="screenshots/sonquiz.png" alt="sonquiz 还原的 Word 样张">
+        <a href="screenshots/sonquiz.png" data-lightbox="sonquiz">
+          <img src="screenshots/sonquiz.png" alt="sonquiz 还原的 Word 样张" loading="lazy">
+        </a>
         <figcaption>还原后的 Word 原版式</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -409,8 +510,11 @@
       <p class="desc">自己所有项目的 UI/UX 组件都收在这里,自己用过的东西,不是截图。写新页面随用随查,已经攒了 54 个真实系统的设计令牌。</p>
       <div class="meta">design tokens · 54 系统</div>
       <figure class="card-shot">
-        <img src="screenshots/uiux-asset-library.png" alt="uiux-asset-library 设计系统">
+        <a href="screenshots/uiux-asset-library.png" data-lightbox="uiux-asset-library">
+          <img src="screenshots/uiux-asset-library.png" alt="uiux-asset-library 设计系统" loading="lazy">
+        </a>
         <figcaption>design tokens 索引页</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -424,8 +528,11 @@
       <p class="desc">macOS 菜单栏里看 5 个 provider 余额:DeepSeek、OpenRouter、MiniMax、Moonshot、Nous Portal。点开一屏全有,不用挨个登录。API key 进 Keychain,Settings 不回显,日志全 redact。4 套主题可切,Nothing White 我最常用。每日活跃自动落进 UserDefaults,365 天热力图积累中。</p>
       <div class="meta">swift · menubar · keychain</div>
       <figure class="card-shot">
-        <img src="screenshots/creditsbar.png" alt="creditsbar 菜单栏 HUD">
+        <a href="screenshots/creditsbar.png" data-lightbox="creditsbar">
+          <img src="screenshots/creditsbar.png" alt="creditsbar 菜单栏 HUD" loading="lazy">
+        </a>
         <figcaption>Nothing White 主题 HUD</figcaption>
+        <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
 
@@ -437,5 +544,54 @@
   </div>
 
 </div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" aria-label="关闭">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+(function() {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  var lbCap = document.getElementById('lightbox-caption');
+  var lbClose = lb.querySelector('.lightbox-close');
+
+  function open(src, cap) {
+    lbImg.src = src;
+    lbImg.alt = cap || '';
+    lbCap.textContent = cap || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var cap = a.closest('figure')?.querySelector('figcaption')?.textContent || '';
+      open(a.getAttribute('href'), cap);
+    });
+  });
+
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lb.classList.contains('open')) close();
+  });
+
+  // 触屏滑动关闭
+  var touchStartY = 0;
+  lb.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; });
+  lb.addEventListener('touchend', function(e) {
+    if (Math.abs(e.changedTouches[0].clientY - touchStartY) > 80) close();
+  });
+})();
+</script>
 </body>
 </html>
