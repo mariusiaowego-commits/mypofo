@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yoyoba · 作品集 2026</title>
+<style>
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --brand:     #1B365D;
+    --ink-light: #2D5A8A;
+    --near-black: #141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --border:    #e8e6dc;
+    --border-soft: #e5e3d8;
+    --tag-bg:    #EEF2F7;
+    --serif:     "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
+    --mono:      "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--parchment);
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 22pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 1080px;
+    margin: 0 auto;
+    padding: 56pt 56pt 80pt;
+    background: var(--parchment);
+  }
+
+  /* Cover */
+  .cover {
+    padding: 24pt 0 32pt;
+    border-bottom: 0.5pt solid var(--border);
+    margin-bottom: 32pt;
+  }
+  .cover .meta-line {
+    font-size: 14pt;
+    color: var(--stone);
+    letter-spacing: 1.2pt;
+    text-transform: uppercase;
+    margin-bottom: 20pt;
+    font-family: var(--serif);
+  }
+  .cover h1 {
+    font-size: 56pt;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--near-black);
+    margin-bottom: 20pt;
+    letter-spacing: -0.5pt;
+  }
+  .cover h1 .brand-bar {
+    display: inline-block;
+    width: 5pt;
+    height: 0.85em;
+    background: var(--brand);
+    margin-right: 16pt;
+    vertical-align: -0.05em;
+    border-radius: 1pt;
+  }
+  .cover .sub {
+    font-size: 20pt;
+    color: var(--olive);
+    line-height: 1.6;
+    max-width: 920pt;
+    margin-bottom: 18pt;
+  }
+  .cover .signature {
+    font-size: 15pt;
+    color: var(--stone);
+    display: flex;
+    gap: 20pt;
+    font-family: var(--mono);
+    flex-wrap: wrap;
+  }
+
+  /* Section title with brand left bar */
+  .section-title {
+    font-family: var(--serif);
+    font-size: 26pt;
+    font-weight: 500;
+    color: var(--near-black);
+    margin: 32pt 0 20pt;
+    border-left: 4pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding-left: 14pt;
+  }
+
+  /* Single column cards */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 18pt;
+  }
+  .card {
+    background: var(--ivory);
+    border: 0.5pt solid var(--border);
+    border-radius: 10pt;
+    padding: 24pt 28pt 22pt;
+    display: flex;
+    flex-direction: column;
+    gap: 10pt;
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-num {
+    font-family: var(--mono);
+    font-size: 14pt;
+    color: var(--stone);
+    letter-spacing: 0.8pt;
+  }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--brand);
+    font-size: 14pt;
+    font-weight: 600;
+    padding: 2pt 8pt;
+    border-radius: 3pt;
+    letter-spacing: 0.4pt;
+    text-transform: uppercase;
+    font-family: var(--serif);
+  }
+  .tag-wip    { background: #f4ecdc; color: #7a5418; }
+  .tag-stable { background: var(--tag-bg); color: var(--brand); }
+  .tag-live   { background: #e6f0e8; color: #2c5a32; }
+
+  .card h2 {
+    font-size: 32pt;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--near-black);
+    font-family: var(--mono);
+    letter-spacing: -0.2pt;
+  }
+  .etymology {
+    font-size: 16pt;
+    color: var(--olive);
+    line-height: 1.5;
+    border-bottom: 0.5pt solid var(--border-soft);
+    padding-bottom: 12pt;
+  }
+  .etymology .arrow { color: var(--brand); margin: 0 4pt; }
+  .card .desc {
+    font-size: 19pt;
+    line-height: 1.7;
+    color: var(--dark-warm);
+  }
+  .card .meta {
+    font-family: var(--mono);
+    font-size: 14pt;
+    color: var(--stone);
+    padding-top: 6pt;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 40pt;
+    padding-top: 20pt;
+    border-top: 0.5pt solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 14pt;
+    color: var(--stone);
+    font-family: var(--mono);
+  }
+  .footer .handle { color: var(--brand); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="meta-line">PORTFOLIO · 2026 · NINE PROJECTS</div>
+    <h1><span class="brand-bar"></span>我在做的 9 个小项目</h1>
+    <p class="sub">都是日常里长出来的小工具:有的解决自己手头的问题,有的纯好玩,有的还在缝缝补补。每一格都是真的在用,不是 demo。</p>
+    <div class="signature">
+      <span>yoyoba</span>
+      <span>个人独立开发</span>
+      <span>19 个仓库在跑</span>
+      <span>macOS + iOS</span>
+    </div>
+  </div>
+
+  <div class="section-title">一 · 名字有典故</div>
+  <div class="stack">
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 01</span>
+        <span class="tag tag-live">在用</span>
+      </div>
+      <h2>dizical</h2>
+      <div class="etymology">dizi<span class="arrow">·</span>笛 + cal<span class="arrow">·</span>计算 + Descartes<span class="arrow">·</span>笛卡尔</div>
+      <p class="desc">笛卡尔说「我思故我在」,dizical 说「我练故笛在」——用数据证明练习的存在。女儿竹笛课管家,从缴费、练功打卡到月报自动出图。</p>
+      <div class="meta">obsidian · 微信 bot · fal 生图</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 02</span>
+        <span class="tag tag-stable">稳态</span>
+      </div>
+      <h2>sonquiz</h2>
+      <div class="etymology">son(g)<span class="arrow">·</span>宋 + quiz<span class="arrow">·</span>考卷</div>
+      <p class="desc">song 收尾的 g 和 quiz 起头的 q 在字形上互为镜像——g 收尾那一笔就是 q 起头那一笔。压缩进 sonquiz 后,中间那个 q 既当 song 漏掉的 g 镜像,又当 quiz 的开头——一个字母,两个身份。出卷对话工具,丢 PDF 用人话讲要出什么,自动还原成 Word 原版式。</p>
+      <div class="meta">docx · pdf · ocr 管线</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 03</span>
+        <span class="tag tag-wip">迭代中</span>
+      </div>
+      <h2>mofang</h2>
+      <div class="etymology">魔方<span class="arrow">·</span>字面</div>
+      <p class="desc">给女儿做的魔方学练工具:CFOP 教程 + 多用户 + AO5/AO12 统计,我和她各自看自己的成绩,看谁进步快。</p>
+      <div class="meta">python cli · curses tui</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 04</span>
+        <span class="tag tag-stable">稳态</span>
+      </div>
+      <h2>moni</h2>
+      <div class="etymology">monitor<span class="arrow">·</span>监控</div>
+      <p class="desc">同业信源自动抓取 + 本地新闻库。给一组关键词 + 信源,定时抓取内容并出研究简报。持续在跑交行竞品监控,定期出报告。</p>
+      <div class="meta">python · apscheduler · yaml</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">二 · 工具与家</div>
+  <div class="stack">
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 05</span>
+        <span class="tag tag-live">在用</span>
+      </div>
+      <h2>mole-vibe</h2>
+      <div class="etymology">mole<span class="arrow">·</span>摸了·摸鱼 + vibe<span class="arrow">·</span>氛围</div>
+      <p class="desc">工位上低调看一眼股票——A股/港股/美股全市场,接富途 OpenD,鼠标一推就走,看着不张扬。</p>
+      <div class="meta">futu opend · ah premium</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 06</span>
+        <span class="tag tag-stable">稳态</span>
+      </div>
+      <h2>uiux-asset-library</h2>
+      <div class="etymology">UI<span class="arrow">·</span>UX<span class="arrow">·</span>资产库</div>
+      <p class="desc">我做过的所有项目的 UI/UX 组件都收在这里,真材实料——是自己在用项目的设计沉淀,不是别人的截图。</p>
+      <div class="meta">design tokens · 54 系统</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 07</span>
+        <span class="tag tag-live">在用</span>
+      </div>
+      <h2>literary-maps</h2>
+      <div class="etymology">文学<span class="arrow">·</span>地图</div>
+      <p class="desc">读《边城》就去湘西,读《百年孤独》就把马孔多标到南美。深度旅行前的研究工具,把文学的真实地点落进地图。</p>
+      <div class="meta">geo · 文本 · obsidian</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 08</span>
+        <span class="tag tag-live">在用</span>
+      </div>
+      <h2>chronocare</h2>
+      <div class="etymology">chrono<span class="arrow">·</span>时间 + care<span class="arrow">·</span>照护</div>
+      <p class="desc">给父母专门定制的健康管理系统。OCR 扫描病历/化验单/处方,自动结构化;LLM 生成易读健康报告,帮他们正确认识自己的健康;Dashboard 长期监控趋势。</p>
+      <div class="meta">fastapi · ocr · llm · echarts</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">三 · 自我工具</div>
+  <div class="stack">
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">№ 09</span>
+        <span class="tag tag-stable">稳态</span>
+      </div>
+      <h2>creditsbar</h2>
+      <div class="etymology">credit<span class="arrow">·</span>余额 + bar<span class="arrow">·</span>状态栏</div>
+      <p class="desc">名字直白——就是余额条。macOS 菜单栏点开,5 个 provider 一屏看清:DeepSeek / OpenRouter / MiniMax / Moonshot / Nous Portal。隐私优先——API key 进 macOS Keychain 不回显;4 套主题——我最常用 Nothing White;每日活跃自动记录 365 天。</p>
+      <div class="meta">swift · menubar · keychain</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>更新于 2026-06 · 微信里手机看效果最好</span>
+    <span class="handle">@yoyoba</span>
+  </div>
+
+</div>
+</body>
+</html>
