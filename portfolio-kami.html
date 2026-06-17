@@ -2,7 +2,11 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+<meta name="theme-color" content="#1B365D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
 <title>yoyoba · 作品集 2026</title>
 <style>
   :root {
@@ -21,64 +25,80 @@
     --mono:      "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
   html, body {
     background: var(--parchment);
     color: var(--near-black);
     font-family: var(--serif);
-    font-size: 22pt;
+    /* base font: 小屏 14px, 中屏 16px, 大屏 18px */
+    font-size: clamp(14px, 2.2vw, 18px);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   .page {
-    width: 1080px;
+    width: 100%;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 56pt 56pt 80pt;
+    /* horizontal padding: 移动端 4%, 桌面 56px */
+    padding: clamp(20px, 4vw, 56px) clamp(16px, 4vw, 56px) clamp(40px, 6vw, 80px);
     background: var(--parchment);
+    /* iOS safe area for notch */
+    padding-left: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left));
+    padding-right: max(clamp(16px, 4vw, 56px), env(safe-area-inset-right));
+    padding-top: max(clamp(20px, 4vw, 56px), env(safe-area-inset-top));
   }
 
   /* Cover */
   .cover {
-    padding: 24pt 0 32pt;
+    padding: clamp(16px, 3vw, 24px) 0 clamp(20px, 3.5vw, 32px);
     border-bottom: 0.5pt solid var(--border);
-    margin-bottom: 32pt;
+    margin-bottom: clamp(20px, 3.5vw, 32px);
   }
   .cover .meta-line {
-    font-size: 14pt;
+    /* 14pt -> 移动端 11px, 桌面 14px */
+    font-size: clamp(11px, 2vw, 14px);
     color: var(--stone);
-    letter-spacing: 1.2pt;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 20pt;
+    margin-bottom: clamp(12px, 2.5vw, 20px);
     font-family: var(--serif);
   }
   .cover h1 {
-    font-size: 56pt;
+    /* 56pt -> 移动端 32px, 桌面 56px */
+    font-size: clamp(32px, 7vw, 56px);
     font-weight: 500;
     line-height: 1.15;
     color: var(--near-black);
-    margin-bottom: 20pt;
-    letter-spacing: -0.5pt;
+    margin-bottom: clamp(12px, 2.5vw, 20px);
+    letter-spacing: -0.01em;
   }
   .cover h1 .brand-bar {
     display: inline-block;
-    width: 5pt;
+    width: 0.4em;
     height: 0.85em;
     background: var(--brand);
-    margin-right: 16pt;
+    margin-right: 0.4em;
     vertical-align: -0.05em;
     border-radius: 1pt;
   }
   .cover .sub {
-    font-size: 20pt;
+    /* 20pt -> 移动端 15px, 桌面 20px */
+    font-size: clamp(15px, 2.6vw, 20px);
     color: var(--olive);
     line-height: 1.6;
-    max-width: 920pt;
-    margin-bottom: 18pt;
+    max-width: min(720px, 100%);
+    margin-bottom: clamp(12px, 2.5vw, 18px);
   }
   .cover .signature {
-    font-size: 15pt;
+    /* 15pt -> 移动端 12px, 桌面 15px */
+    font-size: clamp(12px, 2vw, 15px);
     color: var(--stone);
     display: flex;
-    gap: 20pt;
+    gap: clamp(12px, 2.5vw, 20px);
     font-family: var(--mono);
     flex-wrap: wrap;
   }
@@ -86,29 +106,30 @@
   /* Section title with brand left bar */
   .section-title {
     font-family: var(--serif);
-    font-size: 26pt;
+    /* 26pt -> 移动端 20px, 桌面 26px */
+    font-size: clamp(20px, 3.5vw, 26px);
     font-weight: 500;
     color: var(--near-black);
-    margin: 32pt 0 20pt;
-    border-left: 4pt solid var(--brand);
+    margin: clamp(20px, 4vw, 32px) 0 clamp(12px, 2.5vw, 20px);
+    border-left: clamp(3px, 0.6vw, 4px) solid var(--brand);
     border-radius: 1.5pt;
-    padding-left: 14pt;
+    padding-left: clamp(8px, 1.5vw, 14px);
   }
 
   /* Single column cards */
   .stack {
     display: flex;
     flex-direction: column;
-    gap: 18pt;
+    gap: clamp(12px, 2.5vw, 18px);
   }
   .card {
     background: var(--ivory);
     border: 0.5pt solid var(--border);
-    border-radius: 10pt;
-    padding: 24pt 28pt 22pt;
+    border-radius: clamp(6px, 1.2vw, 10px);
+    padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px) clamp(14px, 2.8vw, 22px);
     display: flex;
     flex-direction: column;
-    gap: 10pt;
+    gap: clamp(6px, 1.2vw, 10px);
   }
   .card-head {
     display: flex;
@@ -117,65 +138,96 @@
   }
   .card-num {
     font-family: var(--mono);
-    font-size: 14pt;
+    /* 14pt -> 移动端 12px, 桌面 14px */
+    font-size: clamp(12px, 2vw, 14px);
     color: var(--stone);
-    letter-spacing: 0.8pt;
+    letter-spacing: 0.08em;
   }
   .tag {
     background: var(--tag-bg);
     color: var(--brand);
-    font-size: 14pt;
+    /* 14pt -> 移动端 12px, 桌面 14px */
+    font-size: clamp(12px, 2vw, 14px);
     font-weight: 600;
-    padding: 2pt 8pt;
-    border-radius: 3pt;
-    letter-spacing: 0.4pt;
+    padding: clamp(2px, 0.5vw, 4px) clamp(6px, 1.2vw, 10px);
+    border-radius: clamp(2px, 0.4vw, 4px);
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     font-family: var(--serif);
+    white-space: nowrap;
   }
   .tag-wip    { background: #f4ecdc; color: #7a5418; }
   .tag-stable { background: var(--tag-bg); color: var(--brand); }
   .tag-live   { background: #e6f0e8; color: #2c5a32; }
 
   .card h2 {
-    font-size: 32pt;
+    /* 32pt -> 移动端 24px, 桌面 32px */
+    font-size: clamp(24px, 4.5vw, 32px);
     font-weight: 500;
     line-height: 1.2;
     color: var(--near-black);
     font-family: var(--mono);
-    letter-spacing: -0.2pt;
+    letter-spacing: -0.01em;
+    /* 长项目名允许换行, 不溢出 */
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .etymology {
-    font-size: 16pt;
+    /* 16pt -> 移动端 13px, 桌面 16px */
+    font-size: clamp(13px, 2.4vw, 16px);
     color: var(--olive);
     line-height: 1.5;
     border-bottom: 0.5pt solid var(--border-soft);
-    padding-bottom: 12pt;
+    padding-bottom: clamp(8px, 1.5vw, 12px);
   }
-  .etymology .arrow { color: var(--brand); margin: 0 4pt; }
+  .etymology .arrow { color: var(--brand); margin: 0 0.25em; }
   .card .desc {
-    font-size: 19pt;
+    /* 19pt -> 移动端 15px, 桌面 19px */
+    font-size: clamp(15px, 2.8vw, 19px);
     line-height: 1.7;
     color: var(--dark-warm);
   }
   .card .meta {
     font-family: var(--mono);
-    font-size: 14pt;
+    /* 14pt -> 移动端 12px, 桌面 14px */
+    font-size: clamp(12px, 2vw, 14px);
     color: var(--stone);
-    padding-top: 6pt;
+    padding-top: clamp(4px, 0.8vw, 6px);
+    overflow-wrap: break-word;
   }
 
   /* Footer */
   .footer {
-    margin-top: 40pt;
-    padding-top: 20pt;
+    margin-top: clamp(24px, 4vw, 40px);
+    padding-top: clamp(12px, 2.5vw, 20px);
     border-top: 0.5pt solid var(--border);
     display: flex;
     justify-content: space-between;
-    font-size: 14pt;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    /* 14pt -> 移动端 12px, 桌面 14px */
+    font-size: clamp(12px, 2vw, 14px);
     color: var(--stone);
     font-family: var(--mono);
   }
   .footer .handle { color: var(--brand); font-weight: 600; }
+
+  /* Small screens: 进一步压缩 */
+  @media (max-width: 480px) {
+    html, body { font-size: 14px; }
+    .cover h1 { font-size: 30px; line-height: 1.18; }
+    .card h2 { font-size: 22px; }
+    .cover .signature { gap: 10px; }
+    .card { padding: 14px 16px 12px; }
+    .etymology { font-size: 13px; }
+  }
+
+  /* 触屏优化: 关闭文字选择高亮, 提升滚动顺滑 */
+  @media (hover: none) and (pointer: coarse) {
+    body { -webkit-tap-highlight-color: transparent; }
+    .card { -webkit-tap-highlight-color: transparent; }
+  }
 </style>
 </head>
 <body>
