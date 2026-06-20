@@ -1,0 +1,32 @@
+{
+  "name": "mypofo",
+  "version": "1.0.0",
+  "description": "9 个我真在用的小项目。一页图，微信手机上看。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariusiaowego-commits/mypofo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "deploy:temp": "wrangler deploy --temporary",
+    "dev": "wrangler dev"
+  },
+  "bugs": {
+    "url": "https://github.com/mariusiaowego-commits/mypofo/issues"
+  },
+  "homepage": "https://github.com/mariusiaowego-commits/mypofo#readme",
+  "devDependencies": {
+    "wrangler": "^4.103.0"
+  },
+  "dependencies": {
+    "@cloudflare/workerd-darwin-arm64": "^1.20260620.1"
+  }
+}
