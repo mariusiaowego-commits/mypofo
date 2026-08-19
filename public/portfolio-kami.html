@@ -22,7 +22,7 @@
     --border-soft: #e5e3d8;
     --tag-bg:    #EEF2F7;
     --serif:     "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
-    --mono:      "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, monospace;
+    --mono:      "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, "PingFang SC", "Source Han Serif SC", "Noto Sans CJK SC", monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html {
@@ -211,9 +211,12 @@
     display: block;
     width: 100%;
     height: auto;
+    max-height: 340px;
+    object-fit: contain;
+    object-position: top center;
     border-radius: clamp(4px, 0.8vw, 6px);
     border: 0.5pt solid var(--border);
-    background: var(--bg-warm);
+    background: var(--ivory);
     /* 缺图时优雅降级: 浅灰底 + 小图标 */
     min-height: 60px;
     cursor: zoom-in;
@@ -222,17 +225,6 @@
   .card-shot a:hover img {
     transform: scale(1.01);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  }
-  .card-shot img[src$="dizical.png"],
-  .card-shot img[src$="mofang.png"],
-  .card-shot img[src$="chronocare.png"],
-  .card-shot img[src$="literary-maps.png"],
-  .card-shot img[src$="mole-vibe.png"],
-  .card-shot img[src$="moni.png"],
-  .card-shot img[src$="sonquiz.png"],
-  .card-shot img[src$="uiux-asset-library.png"],
-  .card-shot img[src$="creditsbar.png"] {
-    /* 占位图默认显示(等用户放真实截图) */
   }
   .card-shot figcaption {
     font-size: clamp(11px, 1.8vw, 13px);
@@ -252,6 +244,25 @@
     font-family: var(--mono);
   }
 
+  /* 手机框截图: 桌面端不要被卡片拉满宽 */
+  .card-shot--phone {
+    text-align: center;
+  }
+  .card-shot--phone a {
+    display: inline-block;
+    max-width: 100%;
+  }
+  .card-shot--phone img {
+    width: auto;
+    max-width: min(360px, 100%);
+    max-height: 520px;
+    margin: 0 auto;
+  }
+  .card-shot--phone figcaption,
+  .card-shot--phone .zoom-hint {
+    text-align: center;
+  }
+
   /* 长条形截图 (菜单栏 HUD 等) 桌面端居中缩放, 移动端仍全宽 */
   .card-shot--narrow {
     text-align: center;
@@ -261,7 +272,8 @@
     max-width: 100%;
   }
   .card-shot--narrow img {
-    max-width: min(720px, 100%);
+    max-width: min(560px, 100%);
+    max-height: 360px;
     margin: 0 auto;
   }
   .card-shot--narrow figcaption,
@@ -361,6 +373,25 @@
     body { -webkit-tap-highlight-color: transparent; }
     .card { -webkit-tap-highlight-color: transparent; }
   }
+
+  /* 打印 / PDF: 不要用 flex 拆中文, 卡片尽量整块翻页 */
+  @media print {
+    .lightbox { display: none !important; }
+    .cover .signature,
+    .card .meta,
+    .footer {
+      display: block;
+      font-family: var(--serif);
+    }
+    .cover .signature span + span::before {
+      content: " · ";
+    }
+    .card,
+    .card-shot {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
 </style>
 </head>
 <body>
@@ -369,7 +400,7 @@
   <div class="cover">
     <div class="meta-line">PORTFOLIO · 2026 · NINE PROJECTS</div>
     <h1><span class="brand-bar"></span>我在做的 9 个小项目</h1>
-    <p class="sub">解决自己手头的问题、做给家人用、纯好玩——大部分是工具,有的还在缝缝补补。每一格都真的在用,不是 demo。</p>
+    <p class="sub">解决自己手头的问题、做给家人用、纯好玩——大部分是工具,有的还在缝缝补补。有的每天打开,有的已经收成一件可玩的东西。</p>
     <div class="signature">
       <span>yoyoba</span>
       <span>个人独立开发</span>
@@ -388,13 +419,13 @@
       </div>
       <h2>dizical</h2>
       <div class="etymology">dizi<span class="arrow">·</span>笛 + cal<span class="arrow">·</span>计算 + Descartes<span class="arrow">·</span>笛卡尔</div>
-      <p class="desc">笛卡尔说「我思故我在」,dizical 说「我练故笛在」——记录下每次练习的时间,月底自动出图。女儿的竹笛课管家,缴费、练功打卡、月报都在这里。</p>
-      <div class="meta">obsidian · 微信 bot · fal 生图</div>
-      <figure class="card-shot">
+      <p class="desc">笛卡尔说「我思故我在」,dizical 说「我练故笛在」——女儿每天打开微信「呦助」计时打卡,速度、老师要求、珐琅徽章写进同一份云端账本。爸爸在网页排课、录要求、出阶段汇报。缴费、练功、月报,还是这一家的竹笛课管家。</p>
+      <div class="meta">fastapi · 微信小程序 · cloudrun</div>
+      <figure class="card-shot card-shot--phone">
         <a href="screenshots/dizical.png" data-lightbox="dizical">
-          <img src="screenshots/dizical.png" alt="dizical iPad 练习界面" loading="lazy">
+          <img src="screenshots/dizical.png" alt="微信小程序呦助首页" loading="lazy">
         </a>
-        <figcaption>iPad 端 kid-app 练习页</figcaption>
+        <figcaption>微信「呦助」首页 · 连续打卡</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -402,17 +433,17 @@
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 02</span>
-        <span class="tag tag-wip">迭代中</span>
+        <span class="tag tag-stable">稳态</span>
       </div>
       <h2>mofang</h2>
       <div class="etymology">魔方<span class="arrow">·</span>字面</div>
-      <p class="desc">给女儿做的魔方学练工具,CFOP 教程、多用户、AO5/AO12 统计都有。我俩各跑各的成绩曲线,谁进步快一目了然。</p>
-      <div class="meta">python cli · curses tui</div>
+      <p class="desc">给女儿搭的魔方学练本。层先法进 CFOP 的教程和公式卡写在仓库里,终端里有一套 curses 壳。真正能看的是那张父女对照仪表盘——曲线是概念稿,计时还没接到真成绩上。</p>
+      <div class="meta">markdown 教程 · curses · html 概念稿</div>
       <figure class="card-shot">
         <a href="screenshots/mofang.png" data-lightbox="mofang">
-          <img src="screenshots/mofang.png" alt="mofang TUI 界面" loading="lazy">
+          <img src="screenshots/mofang.png" alt="mofang 训练仪表盘" loading="lazy">
         </a>
-        <figcaption>终端 TUI 成绩曲线</figcaption>
+        <figcaption>训练仪表盘 · 父女对照</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -420,17 +451,17 @@
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 03</span>
-        <span class="tag tag-live">在用</span>
+        <span class="tag tag-stable">稳态</span>
       </div>
       <h2>chronocare</h2>
       <div class="etymology">chrono<span class="arrow">·</span>时间 + care<span class="arrow">·</span>照护</div>
-      <p class="desc">给父母专门定制的健康管理系统。OCR 扫描病历/化验单/处方,落进结构化数据库;LLM 把数据库里那些指标翻成他们能看懂的话;Dashboard 长期盯着趋势看。</p>
-      <div class="meta">fastapi · ocr · llm · echarts</div>
+      <p class="desc">给父母做的本地健康档案。母亲血糖和化验、父亲两年就诊 PDF 收进同一套库;化验走 Vision OCR,病历走文本抽取,再出一页给老人看的健康报告卡。血糖、就诊、云胶片都在同一个本子里。</p>
+      <div class="meta">fastapi · htmx · chart.js</div>
       <figure class="card-shot">
         <a href="screenshots/chronocare.png" data-lightbox="chronocare">
-          <img src="screenshots/chronocare.png" alt="chronocare dashboard" loading="lazy">
+          <img src="screenshots/chronocare.png" alt="chronocare 仪表盘" loading="lazy">
         </a>
-        <figcaption>Dashboard 长期趋势</figcaption>
+        <figcaption>仪表盘 · 档案 / 血糖 / 就诊</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -443,17 +474,17 @@
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 04</span>
-        <span class="tag tag-live">在用</span>
+        <span class="tag tag-stable">稳态</span>
       </div>
       <h2>literary-maps</h2>
       <div class="etymology">文学<span class="arrow">·</span>地图</div>
-      <p class="desc">读《边城》就去湘西,读《百年孤独》就把马孔多标到南美。深度旅行前的研究工具,把文学里的真实地点落进地图。</p>
-      <div class="meta">geo · 文本 · obsidian</div>
+      <p class="desc">把毛姆《刀锋》里拉里从芝加哥到巴黎、苏伊士、印度的求道路线,叠在同一张 NatGeo 底图上。点航点读情节和名句,拖 1919–1929 时间轴看故事怎么走。入口挂了《卡拉马佐夫兄弟》,目前只是骨架。</p>
+      <div class="meta">leaflet · 单文件 · 双语</div>
       <figure class="card-shot">
-        <a href="screenshots/literary-maps.png" data-lightbox="literary-maps">
-          <img src="screenshots/literary-maps.png" alt="literary-maps 地图" loading="lazy">
+        <a href="screenshots/literary-maps.jpg" data-lightbox="literary-maps">
+          <img src="screenshots/literary-maps.jpg" alt="毛姆《刀锋》文学地图" loading="lazy">
         </a>
-        <figcaption>《边城》湘西 + 《百年孤独》马孔多</figcaption>
+        <figcaption>毛姆《刀锋》地中海航线</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -465,13 +496,13 @@
       </div>
       <h2>mole-vibe</h2>
       <div class="etymology">mole<span class="arrow">·</span>摸了·摸鱼 + vibe<span class="arrow">·</span>氛围</div>
-      <p class="desc">工位上低调看一眼股票。A股/港股/美股全市场,接富途 OpenD。在终端里按两下键就查到,窗口一关就消失,看着不张扬。</p>
-      <div class="meta">futu opend · curses tui</div>
+      <p class="desc">工位上低调扫一眼自选。A股/港股/美股走本地富途 OpenD;终端里按两下还能查个股、AH、基金,窗口一关就没。六月以后日常面换成浏览器里的 Quiet Protocol:分组表、淡色涨跌、展开行带 SVG K 线,关页即走。</p>
+      <div class="meta">futu opend · textual · local web</div>
       <figure class="card-shot">
         <a href="screenshots/mole-vibe.png" data-lightbox="mole-vibe">
-          <img src="screenshots/mole-vibe.png" alt="mole-vibe TUI 行情" loading="lazy">
+          <img src="screenshots/mole-vibe.png" alt="mole-vibe 终端主菜单" loading="lazy">
         </a>
-        <figcaption>终端 TUI 行情</figcaption>
+        <figcaption>终端主菜单 · 查行情入口</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -484,17 +515,17 @@
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 06</span>
-        <span class="tag tag-stable">稳态</span>
+        <span class="tag tag-live">在用</span>
       </div>
       <h2>moni</h2>
       <div class="etymology">monitor<span class="arrow">·</span>监控</div>
-      <p class="desc">同业信源自动抓取,落到本地新闻库。给一组关键词,定时拉内容、出研究简报。交行竞品监控一直在跑,周报自动出。</p>
-      <div class="meta">python · apscheduler · yaml</div>
+      <p class="desc">同业信源落到本地新闻库:多路 RSS / 公众号 / X 按关键词过滤,工作日定时入库。浏览器翻文章、Pin 完一键出简报,顺手沉淀行业日历和同业案例。</p>
+      <div class="meta">fastapi · alpine · apscheduler</div>
       <figure class="card-shot">
         <a href="screenshots/moni.png" data-lightbox="moni">
-          <img src="screenshots/moni.png" alt="moni 监控报告" loading="lazy">
+          <img src="screenshots/moni.png" alt="瞭望 MONI 文章查阅" loading="lazy">
         </a>
-        <figcaption>研究简报 / 周报输出</figcaption>
+        <figcaption>瞭望 · 文章查阅</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -502,17 +533,17 @@
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 07</span>
-        <span class="tag tag-stable">稳态</span>
+        <span class="tag tag-wip">迭代中</span>
       </div>
       <h2>sonquiz</h2>
       <div class="etymology">son(g)<span class="arrow">·</span>宋 + quiz<span class="arrow">·</span>考卷</div>
-      <p class="desc">名字里塞了个文字游戏:宋的尾字母 g 和 quiz 的首字母 q 长得一模一样,压进 sonquiz 之后,中间那个 q 既是漏掉的 g,又是 quiz 的开头。出一个对话工具:丢一份教材 PDF,用日常话讲要出什么,自动还原成 Word 原版式。</p>
-      <div class="meta">docx · pdf · ocr 管线</div>
+      <p class="desc">名字里塞了个文字游戏:宋的尾字母 g 和 quiz 的首字母 q 长得一模一样,压进 sonquiz 之后,中间那个 q 既是漏掉的 g,又是 quiz 的开头。给家里出小学数学卷:教材进结构化题库,按知识点抽题,吐可打印 Word。二下题库已冻,正在灌沪教三上。</p>
+      <div class="meta">python · sqlite · python-docx</div>
       <figure class="card-shot">
         <a href="screenshots/sonquiz.png" data-lightbox="sonquiz">
-          <img src="screenshots/sonquiz.png" alt="sonquiz 还原的 Word 样张" loading="lazy">
+          <img src="screenshots/sonquiz.png" alt="sonquiz 家用 Word 卷面" loading="lazy">
         </a>
-        <figcaption>还原后的 Word 原版式</figcaption>
+        <figcaption>家用 Word 校卷模板</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -524,13 +555,13 @@
       </div>
       <h2>uiux-asset-library</h2>
       <div class="etymology">UI<span class="arrow">·</span>UX<span class="arrow">·</span>资产库</div>
-      <p class="desc">自己所有项目的 UI/UX 组件都收在这里,自己用过的东西,不是截图。写新页面随用随查,已经攒了 54 个真实系统的设计令牌。</p>
-      <div class="meta">design tokens · 54 系统</div>
+      <p class="desc">自己用过的 UI 零件和设计令牌收在这里:单文件可拖可点,不是截图堆。现在入库 3 套设计系统(dizicute、CreditsBar、Vercel Geist)和 8 个可复用组件,另有 dizical 珐琅徽章墙。写新页面对着主题索引随用随查。</p>
+      <div class="meta">HTML 零件库 · 3 套 token</div>
       <figure class="card-shot">
         <a href="screenshots/uiux-asset-library.png" data-lightbox="uiux-asset-library">
-          <img src="screenshots/uiux-asset-library.png" alt="uiux-asset-library 设计系统" loading="lazy">
+          <img src="screenshots/uiux-asset-library.png" alt="dizicute 设计令牌展柜" loading="lazy">
         </a>
-        <figcaption>design tokens 索引页</figcaption>
+        <figcaption>dizicute 展柜 · 色板 / 字体 / 组件</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -538,17 +569,17 @@
     <div class="card">
       <div class="card-head">
         <span class="card-num">№ 09</span>
-        <span class="tag tag-stable">稳态</span>
+        <span class="tag tag-live">在用</span>
       </div>
       <h2>creditsbar</h2>
       <div class="etymology">credit<span class="arrow">·</span>余额 + bar<span class="arrow">·</span>状态栏</div>
-      <p class="desc">macOS 菜单栏里看 5 个 provider 余额:DeepSeek、OpenRouter、MiniMax、Moonshot、Nous Portal。点开一屏全有,不用挨个登录。API key 进 Keychain,Settings 不回显,日志全 redact。4 套主题可切,Nothing White 我最常用。每日活跃自动落进 UserDefaults,365 天热力图积累中。</p>
-      <div class="meta">swift · menubar · keychain</div>
+      <p class="desc">macOS 菜单栏点开 CreditsBar,一屏看 DeepSeek、OpenRouter、MiniMax、Moonshot、Nous Portal、火山 Ark、OpenCode 的余额和配额。API key 进 Keychain,Settings 不回显,日志 redact。四套主题可切,点开 HUD 会自动刷一轮。</p>
+      <div class="meta">swift · menubar hud · keychain</div>
       <figure class="card-shot card-shot--narrow">
         <a href="screenshots/creditsbar.png" data-lightbox="creditsbar">
-          <img src="screenshots/creditsbar.png" alt="creditsbar 菜单栏 HUD" loading="lazy">
+          <img src="screenshots/creditsbar.png" alt="CreditsBar HUD 仪表盘" loading="lazy">
         </a>
-        <figcaption>Nothing White 主题 HUD</figcaption>
+        <figcaption>OpenQuota HUD · 用量环 / 配额条</figcaption>
         <span class="zoom-hint">点击放大 ↗</span>
       </figure>
     </div>
@@ -556,7 +587,7 @@
   </div>
 
   <div class="footer">
-    <span>更新于 2026-06 · 手机看效果最好</span>
+    <span>更新于 2026-08 · 手机看效果最好</span>
     <span class="handle">@yoyoba</span>
   </div>
 
