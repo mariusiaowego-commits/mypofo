@@ -1,7 +1,7 @@
 # mypofo AGENTS
 
-## Repo owner
+「yoyoba · 作品集 2026」：9 个项目的文案与截图，一页看完，微信手机端为主。
 
-GitHub 账号: `mariusiaowego-commits`
-
-⚠️ **拼写陷阱**: owner 中段是 5 字符 `o-w-e-g-o` (含 w), 容易被打成 4 字符 `u-e-g-o` (少 o 多 u, 漏掉 w)。任何 GH URL/repo/操作必须从本文件原样复制, 不可凭记忆打字。
+- 入口 `src/`，产物 `public/`；部署配置 `vercel.json`、`wrangler.jsonc`
+- 文案里的数字与截图来自各对应仓库，更新时回原仓复核，不凭印象改
+- 改完在手机宽度自查一遍再推
